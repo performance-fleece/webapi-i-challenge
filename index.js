@@ -4,6 +4,9 @@ const Users = require('./data/db.js');
 const server = express();
 
 server.use(express.json());
+server.use(cors());
+
+//FETCH ALL USERS
 
 server.get('/api/users', (req, res) => {
   Users.find()
@@ -16,6 +19,8 @@ server.get('/api/users', (req, res) => {
       });
     });
 });
+
+// ADD USER
 
 server.post('/api/users', (req, res) => {
   const { name, bio } = req.body;
@@ -38,6 +43,8 @@ server.post('/api/users', (req, res) => {
   }
 });
 
+// DELETE ALL USERS
+
 server.delete('/api/users/:id', (req, res) => {
   Users.remove(req.params.id)
     .then(deleted => {
@@ -53,6 +60,8 @@ server.delete('/api/users/:id', (req, res) => {
       res.status(500).json({ errorMessage: 'The user could not be removed' });
     });
 });
+
+//GET SPECIFIC USER
 
 server.get('/api/users/:id', (req, res) => {
   Users.findById(req.params.id)
@@ -71,6 +80,8 @@ server.get('/api/users/:id', (req, res) => {
       });
     });
 });
+
+// UPDATE USER
 
 server.put('/api/users/:id', (req, res) => {
   const { id } = req.params;
