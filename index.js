@@ -53,6 +53,26 @@ server.get('/api/users/:id', (req, res) => {
     });
 });
 
+server.put('/api/users/:id', (req, res) => {
+  const { id } = req.params;
+  const { name, bio } = req.body;
+  if (!name || !bio) {
+    res.status(400).json({ errorMessage: 'Requires name and bio to update' });
+  } else {
+    Users.update(id, req.body)
+      .then(user => {
+        if (user) {
+          res.status(200).json({ message: `${req.body.name} updated` });
+        } else {
+          res.status(400).json({ message: 'Unknown user' });
+        }
+      })
+      .catch(() => {
+        res.status(500).json({ errorMessage: 'Update failed' });
+      });
+  }
+});
+
 server.listen(4000, () => {
   console.log('Server running on http://localhost:4000');
 });
