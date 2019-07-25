@@ -52,13 +52,13 @@ server.delete('/api/users/:id', (req, res) => {
       if (deleted > 0) {
         res.status(200).json({ message: 'User Deleted' });
       } else {
-        res
-          .status(404)
-          .json({ message: 'The user with the specified ID does not exist.' });
+        res.status(404).json({ errorMessage: 'The user could not be removed' });
       }
     })
     .catch(() => {
-      res.status(500).json({ errorMessage: 'The user could not be removed' });
+      res
+        .status(500)
+        .json({ message: 'The user with the specified ID does not exist.' });
     });
 });
 
@@ -71,13 +71,13 @@ server.get('/api/users/:id', (req, res) => {
         res.status(200).json(user);
       } else {
         res.status(404).json({
-          errorMessage: ' The user witht he specified ID does not exist'
+          errorMessage: 'The user information could not be retrieved.'
         });
       }
     })
     .catch(err => {
       req.status(500).json({
-        errorMessage: 'The user information could not be retrieved.'
+        errorMessage: 'The user with the specified ID does not exist'
       });
     });
 });
@@ -98,13 +98,13 @@ server.put('/api/users/:id', (req, res) => {
           res.status(200).json(user);
         } else {
           res.status(404).json({
-            message: 'The user with the specified ID does not exist.'
+            errorMessage: 'The user information could not be modified.'
           });
         }
       })
       .catch(() => {
         res.status(500).json({
-          errorMessage: 'The user information could not be modified.'
+          message: 'The user with the specified ID does not exist.'
         });
       });
   }
