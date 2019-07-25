@@ -18,8 +18,8 @@ export const ADD_USER_FAIL = 'ADD_USER_FAIL';
 
 export const getUsers = () => dispatch => {
   dispatch({ type: FETCH_USERS_START });
-  axios()
-    .get('https://localhost:4000')
+  axios
+    .get('http://localhost:4000/api/users')
     .then(res => {
       dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
     })
@@ -33,11 +33,11 @@ export const addUser = (e, newuser) => dispatch => {
   e.preventDefault();
   dispatch({ type: ADD_USER_START });
   return axios
-    .post('https://localhost:4000/api/users', newuser)
+    .post('http://localhost:4000/api/users', newuser)
     .then(res => {
       dispatch({ type: ADD_USER_SUCCESS });
-      axios()
-        .get('https://localhost:4000')
+      axios
+        .get('http://localhost:4000/api/users')
         .then(res => {
           dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
         })
@@ -54,12 +54,12 @@ export const addUser = (e, newuser) => dispatch => {
 
 export const deleteUser = id => dispatch => {
   dispatch({ type: DELETE_USER_START });
-  axios()
-    .delete(`https://localhost:4000/api/users/${id}`)
+  axios
+    .delete(`http://localhost:4000/api/users/${id}`)
     .then(res => {
       dispatch({ type: DELETE_USER_SUCCESS });
-      axios()
-        .get('https://localhost:4000')
+      axios
+        .get('http://localhost:4000/api/users')
         .then(res => {
           dispatch({
             type: FETCH_USERS_SUCCESS,
@@ -82,12 +82,12 @@ export const deleteUser = id => dispatch => {
 
 export const updateUser = (id, updatedUser) => dispatch => {
   dispatch({ type: UPDATE_USER_START });
-  axios()
-    .put(`https://localhost:4000/api/users/${id}`, updatedUser)
+  axios
+    .put(`http://localhost:4000/api/users/${id}`, updatedUser)
     .then(res => {
       dispatch({ type: UPDATE_USER_SUCCESS });
-      axios()
-        .get('https://localhost:4000')
+      axios
+        .get('http://localhost:4000/api/users')
         .then(res => {
           dispatch({
             type: FETCH_USERS_SUCCESS,
