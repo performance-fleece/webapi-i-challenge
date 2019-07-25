@@ -6,7 +6,12 @@ const UserList = props => {
     <div className="user-list">
       {props.users.map(user => {
         return (
-          <UserCard key={user.id} user={user} deleteUser={props.deleteUser} />
+          <UserCard
+            key={user.id}
+            user={user}
+            deleteUser={props.deleteUser}
+            updateUser={props.updateUser}
+          />
         );
       })}
     </div>

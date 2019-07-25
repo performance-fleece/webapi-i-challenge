@@ -14,7 +14,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <UserForm addUser={this.props.addUser} />
-        <UserList users={this.props.users} deleteUser={this.props.deleteUser} />
+        <UserList
+          users={this.props.users}
+          deleteUser={this.props.deleteUser}
+          updateUser={this.props.updateUser}
+        />
       </div>
     );
   }
