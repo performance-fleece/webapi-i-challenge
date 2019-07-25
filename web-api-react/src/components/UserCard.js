@@ -71,7 +71,7 @@ class UserCard extends React.Component {
         </button>
         {this.state.isUpdating ? (
           <button onClick={e => this.updateHandler(e, this.props.user.id)}>
-            Supdate
+            Update
           </button>
         ) : (
           <button onClick={this.updateToggle}>Update</button>
