@@ -43,6 +43,16 @@ server.delete('/api/users/:id', (req, res) => {
   });
 });
 
+server.get('/api/users/:id', (req, res) => {
+  Users.findById(req.params.id)
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      req.status(500).json({ success: false, err });
+    });
+});
+
 server.listen(4000, () => {
   console.log('Server running on http://localhost:4000');
 });
