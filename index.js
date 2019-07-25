@@ -67,7 +67,7 @@ server.delete('/api/users/:id', (req, res) => {
 server.get('/api/users/:id', (req, res) => {
   Users.findById(req.params.id)
     .then(user => {
-      if (user) {
+      if (user[0].id == req.params.id) {
         res.status(200).json(user);
       } else {
         res.status(404).json({
